@@ -1,5 +1,5 @@
 {
-  "name": "ifcConvert",
+  "name": "ifc-convert",
   "version": "0.0.0",
   "description": "Simple wrapper for ifcConvert",
   "main": "index.js",
