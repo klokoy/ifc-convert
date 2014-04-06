@@ -3,6 +3,10 @@
   "version": "0.0.0",
   "description": "Simple wrapper for ifcConvert",
   "main": "index.js",
+  "repository" : {
+      "type" : "git",
+      "url" : "https://github.com/klokoy/ifcConvert"
+  },
   "scripts": {
     "test": "mocha"
   },
