@@ -32,7 +32,6 @@ module.exports = function ifcConvert(source, dest, options, callback) {
         if (err) {
             callback(err);
         } else if (stderr.lenght > 0) {
-            console.log(stderr.toString());
             callback(new Error(stderr.toString()));
         } else {
             callback(null);
