@@ -26,6 +26,10 @@ module.exports = function ifcConvert(source, dest, options, callback) {
 
     var args = [source, dest];
 
+    //If user supplies any args concat them to the args array
+    if(options && options.args) {
+        args = args.concat(options.args);
+    }
 
     execFile(ifcConvertPath, args, function(err, stdout, stderr) {
 
