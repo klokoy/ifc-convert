@@ -11,7 +11,7 @@ A simple wrapper for the IfcConvert program for node.
 ```javascript
 var ifcConvert = require('ifc-convert');
 
-ifcConvert('source.ifc', 'dest.dea', function(err) {
+ifcConvert('source.ifc', 'dest.dae', function(err) {
     //Now you have a Collada file;)
 });
 
@@ -34,7 +34,7 @@ ifcConvert('source.ifc', 'dest.igs', function(err) {
 If you do not have IfcConvert in your path you can give it in options.
 
 ```javascript
-ifcConvert('source.ifc', 'dest.dea', {path: 'path/to/bin'}, function(err) {
+ifcConvert('source.ifc', 'dest.dae', {path: 'path/to/bin'}, function(err) {
     //Done
 })
 ```
