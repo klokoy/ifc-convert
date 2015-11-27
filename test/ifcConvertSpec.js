@@ -15,46 +15,50 @@ describe('ifcConvert', function() {
         var testFormat = function(format, callback) {
             var dest = relative('duplex.' + format);
 
-            ifcConvert(source, dest, function(err) {
-                assert(!err);
-
-                fs.exists(dest, function(exists) {
-                    assert(exists);
+            ifcConvert(source, dest)
+                .then(function() {
+                    assert(fs.existsSync(dest));
                     callback(null);
-                });
-            });
+                })
+                .catch(function() {
+                    //Should not be here
+                    assert(false);
+                })
+
         };
 
         async.each(formats, testFormat, done);
 
     });
 
-    it('should err if source does not exits', function (done) {
-        ifcConvert('doesnotexists.ifc', 'doesnotexits.dae', function (err) {
-            assert(err);
-            assert.equal(err.message, 'Unable to open the source file.');
-
-            done();
-        });
+    it('should err if source does not exits', function(done) {
+        ifcConvert('doesnotexists.ifc', 'doesnotexits.dae')
+            .catch(function(reason) {
+                assert.equal(reason, 'Unable to open the source file.');
+                done();
+            });
     });
 
-    it('should pass errors through', function (done) {
+    it('should pass errors through', function(done) {
         var source = relative('erroneous.ifc');
 
-        ifcConvert(source, 'erroneous.dae', function (err) {
-            assert(err);
-            done();
-        });
+        ifcConvert(source, 'erroneous.dae')
+            .catch(function(reason) {
+                assert(reason);
+                done();
+            });
     });
 
-    it('should allow setting path to ifcConvert', function (done) {
+    it('should allow setting path to ifcConvert', function(done) {
         var source = relative('duplex.ifc');
-        var options = {path: '/usr/local/bin'};
+        var options = {
+            path: '/usr/local/bin'
+        };
 
-        ifcConvert(source, 'duplex.dae', options, function (err) {
-            assert(!err);
-            done();
-        });
+        ifcConvert(source, 'duplex.dae', options)
+            .then(function() {
+                done();
+            });
     });
 });
 
