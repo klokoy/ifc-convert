@@ -1,6 +1,6 @@
 #Ifc converter for Node.js
 
-A simple wrapper for the IfcConvert program for node.
+A simple promised based wrapper for the IfcConvert program for node.
 
 #Requirements
 
@@ -11,21 +11,25 @@ A simple wrapper for the IfcConvert program for node.
 ```javascript
 var ifcConvert = require('ifc-convert');
 
-ifcConvert('source.ifc', 'dest.dae', function(err) {
-    //Now you have a Collada file;)
-});
+ifcConvert('source.ifc', 'dest.dae')
+    .then(function() {
+        //Now you have a Collada file;)
+    });
 
-ifcConvert('source.ifc', 'dest.obj', function(err) {
-    //Now you have a Wavefront OBJ file with an .mtl file
-});
+ifcConvert('source.ifc', 'dest.obj')
+    .then(function() {
+        //Now you have a Wavefront OBJ file with an .mtl file
+    });
 
-ifcConvert('source.ifc', 'dest.stp', function(err) {
-    //Now you have a STEP file
-});
+ifcConvert('source.ifc', 'dest.stp')
+    .then(function() {
+        //Now you have a STEP file
+    });
 
-ifcConvert('source.ifc', 'dest.igs', function(err) {
-    //Now you have a IGES file
-});
+ifcConvert('source.ifc', 'dest.igs')
+    .then(function() {
+        //Now you have a IGES file
+    });
 
 ```
 
@@ -34,7 +38,8 @@ ifcConvert('source.ifc', 'dest.igs', function(err) {
 If you do not have IfcConvert in your path you can give it in options.
 
 ```javascript
-ifcConvert('source.ifc', 'dest.dae', {path: 'path/to/bin'}, function(err) {
-    //Done
-})
+ifcConvert('source.ifc', 'dest.dae', {path: 'path/to/bin'})
+    .then(function() {
+        //Done
+    });
 ```
