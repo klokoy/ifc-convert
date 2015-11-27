@@ -4,41 +4,41 @@ var path = require("path"),
     execFile = require("child_process").execFile,
     fs = require('fs');
 
-module.exports = function ifcConvert(source, dest, options, callback) {
+module.exports = function ifcConvert(source, dest, options) {
 
-    if (!callback) {
-        callback = options;
-        options = undefined;
-    }
+    return new Promise(function(resolve, reject) {
 
-    var ifcConvertPath;
+        var ifcConvertPath;
 
-    if (options && options.path) {
-        ifcConvertPath = options.path + '/IfcConvert';
-    } else {
-        ifcConvertPath = 'IfcConvert';
-    }
-
-    if (!fs.existsSync(source)) {
-        callback(new Error('Unable to open the source file.'));
-        return;
-    }
-
-    var args = [source, dest];
-
-    //If user supplies any args concat them to the args array
-    if(options && options.args) {
-        args = args.concat(options.args);
-    }
-
-    execFile(ifcConvertPath, args, {maxBuffer: 1024 * 500},function(err, stdout, stderr) {
-
-        if (err) {
-            callback(err);
-        } else if (stderr.lenght > 0) {
-            callback(new Error(stderr.toString()));
+        if (options && options.path) {
+            ifcConvertPath = options.path + '/IfcConvert';
         } else {
-            callback(null);
+            ifcConvertPath = 'IfcConvert';
         }
+
+        if (!fs.existsSync(source)) {
+            reject('Unable to open the source file.');
+            return;
+        }
+
+        var args = [source, dest];
+
+        //If user supplies any args concat them to the args array
+        if (options && options.args) {
+            args = args.concat(options.args);
+        }
+
+        execFile(ifcConvertPath, args, {
+            maxBuffer: 1024 * 500
+        }, function(err, stdout, stderr) {
+
+            if (err) {
+                reject(err);
+            } else if (stderr.lenght > 0) {
+                reject(new Error(stderr.toString()));
+            } else {
+                resolve();
+            }
+        });
     });
 };
