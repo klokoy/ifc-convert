@@ -31,7 +31,7 @@ module.exports = function ifcConvert(source, dest, options, callback) {
         args = args.concat(options.args);
     }
 
-    execFile(ifcConvertPath, args, , {maxBuffer: 1024 * 500},function(err, stdout, stderr) {
+    execFile(ifcConvertPath, args, {maxBuffer: 1024 * 500},function(err, stdout, stderr) {
 
         if (err) {
             callback(err);
