@@ -29,7 +29,7 @@ module.exports = function ifcConvert(source, dest, options) {
         }
 
         execFile(ifcConvertPath, args, {
-            maxBuffer: 1024 * 500
+            maxBuffer: 1024 * 1000
         }, function(err, stdout, stderr) {
 
             if (err) {
