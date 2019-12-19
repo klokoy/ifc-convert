@@ -1,12 +1,12 @@
-#Ifc converter for Node.js
+# Ifc converter for Node.js
 
 A simple promised based wrapper for the IfcConvert program for node.
 
-#Requirements
+# Requirements
 
 - IfcConvert, Installation instructions and binaries can be found at the [ifcOpenShell](http://ifcopenshell.org/ifcconvert.html) page.
 
-#Usage
+# Usage
 
 ```javascript
 var ifcConvert = require('ifc-convert');
@@ -33,7 +33,7 @@ ifcConvert('source.ifc', 'dest.igs')
 
 ```
 
-#Options
+# Options
 
 If you do not have IfcConvert in your path you can give it in options.
 
