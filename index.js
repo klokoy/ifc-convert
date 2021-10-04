@@ -34,7 +34,7 @@ module.exports = function ifcConvert(source, dest, options) {
 
             if (err) {
                 reject(err);
-            } else if (stderr.lenght > 0) {
+            } else if (stderr.length > 0) {
                 reject(new Error(stderr.toString()));
             } else {
                 resolve();
